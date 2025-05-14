@@ -49,6 +49,11 @@ Here are the steps I would take to scaffold a simple FastAPI application with a 
 7. **Set up testing structure**:
    - Create a tests directory
    - Add basic health endpoint tests
+   - Leverage pytest fixtures for common test setups:
+     - Create a `conftest.py` with client fixture for FastAPI TestClient
+     - Use fixtures for mocking dependencies and services
+     - Implement session-scoped fixtures for expensive operations
+   - Structure tests to match the application structure
 
 8. **Add Docker configuration**:
    - Create a Dockerfile that uses `uv` for dependency management:
@@ -93,6 +98,37 @@ To run the FastAPI application using `uv`:
    ```bash
    uv run -m pytest
    ```
+   
+   To run tests with coverage reporting:
+   ```bash
+   uv run -m pytest --cov=app tests/ --cov-report term-missing
+   ```
+   
+   For test discovery, pytest will automatically find tests that follow these patterns:
+   - Files named `test_*.py` or `*_test.py`
+   - Functions prefixed with `test_`
+   - Classes prefixed with `Test`
+   
+   Example test structure:
+   ```python
+   # tests/conftest.py
+   import pytest
+   from fastapi.testclient import TestClient
+   from app.main import app
+
+   @pytest.fixture
+   def client():
+       """Fixture providing a FastAPI TestClient."""
+       return TestClient(app)
+       
+   # tests/test_health.py
+   def test_health_endpoint(client):
+       """Test that the health endpoint returns the expected status."""
+       response = client.get("/health")
+       assert response.status_code == 200
+       assert "status" in response.json()
+       assert response.json()["status"] == "ok"
+   ```
 
 Your `pyproject.toml` should look similar to this:
 
@@ -114,3 +150,47 @@ dev = [
     "pytest-mock",
 ]
 ```
+
+## Verifying Application Functionality
+
+After setting up the FastAPI application, verify its functionality using the following steps:
+
+1. **Run tests to confirm code functionality**:
+   ```bash
+   uv run -m pytest -v
+   ```
+   
+   This command will run all tests and display verbose output to confirm everything is working correctly.
+
+2. **Run the application locally**:
+   ```bash
+   uv run -m uvicorn main:app --reload
+   ```
+   
+   Navigate to http://127.0.0.1:8000/docs to view the Swagger UI documentation and try out the health endpoint.
+   
+   You can check the health endpoint directly at http://127.0.0.1:8000/health
+
+3. **Build and run with Docker**:
+   ```bash
+   # Build the Docker image
+   docker build -t fastapi-health-app .
+   
+   # Run the container
+   docker run -p 8000:8000 fastapi-health-app
+   ```
+   
+   Or using docker-compose:
+   ```bash
+   docker-compose up --build
+   ```
+   
+   Verify the Docker deployment by accessing the same endpoints as above.
+
+4. **Validation checklist**:
+   - Health endpoint returns 200 OK with appropriate status information
+   - Swagger documentation is accessible and correctly displays API endpoints
+   - Tests pass with no failures or errors
+   - Application starts without errors in both local and Docker environments
+
+Following these verification steps ensures that your FastAPI application is functioning correctly in both development and containerized environments.
