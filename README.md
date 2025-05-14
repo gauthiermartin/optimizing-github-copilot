@@ -19,6 +19,7 @@ A comprehensive guide to maximizing productivity with GitHub Copilot in VS Code.
   - [GitHub Integration Commands](#github-integration-commands)
   - [Agent Mode Commands](#agent-mode-commands-experimental)
 - [Resources](#resources)
+- [License](#license)
 
 ## Getting Started
 
@@ -181,3 +182,7 @@ TODO
 - [Github Copilot Customization](https://code.visualstudio.com/docs/copilot/copilot-customization)
 - [VS Code Agent Mode Just Changed Everything](https://youtu.be/dutyOc_cAEU?si=nD676VSQ25nPVO-g)
 - [Smaller prompts, better answers with GitHub Copilot Custom Instructions](https://www.youtube.com/watch?v=zwIlqbTHjac)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
