@@ -1,3 +1,0 @@
-
-# Commit Message Generation
-I would like to create a good prompt targeting instruction for commit message generation. Please provide proper prompt that would define proper instruction for each commit types described here #fetch https://gist.github.com/Zekfad/f51cb06ac76e2457f11c80ed705c95a3. Please save this prompt in the.vscode/settings.json of this project. Please make sure to leverage the proper vscode setting github.copilot.chat.commitMessageGeneration.instructions to save this system prompt
