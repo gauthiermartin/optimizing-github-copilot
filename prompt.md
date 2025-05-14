@@ -1,0 +1,2 @@
+
+I would like to create a good prompt targeting instruction for commit message generation. Please provide proper prompt that would define proper instruction for each commit types described here #fetch https://gist.github.com/Zekfad/f51cb06ac76e2457f11c80ed705c95a3
