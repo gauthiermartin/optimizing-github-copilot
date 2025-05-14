@@ -1,0 +1,30 @@
+{
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "Generate Python code that adheres to the Ruff style guide. Ensure the code is clean, efficient, and well-structured. Use type hints for all function signatures and include docstrings for all functions and classes. Follow best practices for error handling and resource management. If applicable, include unit tests with appropriate coverage. Avoid using deprecated libraries or methods. Ensure the code is compatible with Python 3.12.x"
+    }
+  ],
+  "pythonTestExplorer.testFramework": "pytest",
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.testGeneration.instructions": [
+    {
+      "text": "Generate comprehensive pytest-based test code following these guidelines:\n\n1) Always use pytest, pytest-mock, and pytest-cov for testing. Add these packages to the dev dependency group in pyproject.toml if not already present.\n\n2) Fixtures & Organization:\n   - Create fixtures for repetitive test setup and teardown processes\n   - Follow the Arrange-Act-Assert (AAA) pattern in test structure\n   - Group related tests within classes following the pattern 'Test{ClassName}'\n   - Name test functions descriptively as 'test_{method_name}_{scenario}'\n\n3) Coverage & Testing Approaches:\n   - Aim for high test coverage (>90%) with meaningful assertions\n   - Implement appropriate parameterization for testing multiple scenarios\n   - Test edge cases, error conditions, and normal execution paths\n   - Use mocking appropriately for external dependencies\n\n4) Quality Standards:\n   - Include type hints in test functions and fixtures\n   - Add docstrings explaining test purpose and methodology\n   - Follow Ruff linting standards and formatting rules\n   - Create isolated tests that don't depend on execution order\n\n5) Best Practices:\n   - Write deterministic tests (avoid randomness without seeding)\n   - Use context managers for resources that need cleanup\n   - Test for proper exception handling where applicable\n   - Prefer specific assertions over generic ones (e.g., assert_called_with over assert)\n\n6) Project Integration:\n   - Ensure tests can be run with 'pytest tests/' and include coverage reporting\n   - Follow the project's existing testing patterns and conventions\n   - Create proper test discovery structures (__init__.py files as needed)\n   - Incorporate any relevant project-specific testing utilities\n\nGenerate tests that validate the source code's behavior thoroughly while remaining maintainable and efficient."
+        }
+    ],
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestions.fixes": true,
+  
+  "github.copilot.chat.reviewSelection.enabled": true,
+  "github.copilot.chat.reviewSelection.instructions": [
+    {
+      "text": "Perform a thorough Python code review focusing on these aspects: \n1) Identify bugs and logic errors;\n2) Flag performance issues including inefficient algorithms, unnecessary computations, and memory leaks;\n3) Enforce proper typing with mypy standards;\n4) Identify code smells like duplicate code, excessive complexity, tight coupling;\n5) Check proper error handling;\n6) Validate docstrings and comments for accuracy and completeness;\n7) Ensure compliance with ruff linting and formatting standards;\n8) Verify proper unit test coverage when applicable;\n9) Review security vulnerabilities like input validation, SQL injection, etc.;\n10) Examine race conditions in concurrent code;\n11) Check for robust resource management;\n12) Analyze class designs for SOLID principles;\n13) Identify potential edge cases. Be direct and specific about issues with clear examples of better implementations."
+    }
+  ],
+  "github.copilot.chat.commitMessageGeneration.instructions": [ 
+    {
+        "text": "Generate commit messages following the Conventional Commits standard (https://www.conventionalcommits.org/). Each commit message should have the structure: <type>[optional scope][optional !]: <description>\n\nCommit Types and Their Usage:\n- build: Use for changes that affect the build system or external dependencies (e.g., gulp, npm, webpack)\n- ci: Use for changes to CI configuration files and scripts (e.g., GitHub Actions, Travis, Circle CI)\n- chore: Use for changes which don't modify source code or tests (e.g., updating build tasks, package manager configs)\n- docs: Use for documentation only changes\n- feat: Use for new features or functionality additions\n- fix: Use for bug fixes\n- perf: Use for code changes that improve performance\n- refactor: Use for code changes that neither fix bugs nor add features\n- revert: Use when reverting previous commits\n- style: Use for changes that do not affect the meaning of the code (e.g., formatting, missing semicolons)\n- test: Use for adding or correcting tests\n\nCommit Structure Guidelines:\n1. Type: Always lowercase (e.g., feat, fix)\n2. Scope: Optional, in parentheses, describing the section of codebase (e.g., feat(api), fix(auth))\n3. Breaking Change: Add ! after type/scope for breaking changes (e.g., feat!, feat(api)!)\n4. Description: Short, imperative, present tense description\n5. Body: Optional, separated by a blank line, explaining motivation and context\n6. Footer: Optional, may contain references to issues or breaking change notices\n\nExamples:\n- feat: add user authentication\n- fix(login): resolve session timeout issue\n- feat(api)!: rework user endpoints\n- chore(deps): update dependencies\n- docs: improve installation instructions\n\nReminders:\n- Put a newline before extended commit body\n- Use imperative mood in the description ('add' not 'added')\n- Description should not end with a period\n- Keep the first line under 72 characters\n- Explain 'what' and 'why' in the body, not 'how'\n- Reference issues in footer using 'fixes #123' or 'closes #456'\n\nGenerate complete, concise commit messages based on the changes provided, following these conventions strictly."
+    }
+  ],
+}
